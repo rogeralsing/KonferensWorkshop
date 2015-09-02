@@ -8,6 +8,7 @@ namespace ClientApplication
     {
         static void Main(string[] args)
         {
+            //simulera att 10 samtidiga användare/klienter försöker skicka samma data samtidigt
             for (int i = 0; i < 10; i++)
             {
                 Task.Factory.StartNew(PostPerson);
