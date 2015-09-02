@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Akka.Actor;
 using Nancy;
 using Nancy.Hosting.Self;
 using Nancy.ModelBinding;
@@ -56,7 +57,15 @@ namespace ConcurrencyExample2
                 {
                     Console.WriteLine("Person with name {0} already exists", person.Name);
                 }
-                return Response.AsJson(person);
+
+                return (Response) "OK";
+            };
+
+            Post["/akka",true] = async (x,ct) =>
+            {
+                var person = this.Bind<Person>();
+                var result = await AkkaUtils.PostPerson.Ask<string>(person);
+                return (Response) result;
             };
         }
     }

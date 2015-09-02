@@ -7,15 +7,19 @@ namespace ClientApplication
     {
         static void Main(string[] args)
         {
+            var names = new[] {"Connor MacLeod", "Roger", "Klas", "Anders", "Jerker"};
             //simulera att 10 samtidiga användare/klienter försöker skicka samma data samtidigt
-            for (int i = 0; i < 10; i++)
+            foreach (var name in names)
             {
-                PostPerson();
+                for (int i = 0; i < 10; i++)
+                {
+                    PostPerson(name);
+                }
             }
             Console.ReadLine();
         }
 
-        private static void PostPerson()
+        private static void PostPerson(string name)
         {
             var client = new RestClient("http://localhost:1234");
             var request = new RestRequest(Method.POST)
@@ -24,7 +28,7 @@ namespace ClientApplication
                 RequestFormat = DataFormat.Json
             };
             
-            request.AddBody(new { Name = "Connor MacLeod" });
+            request.AddBody(new { Name = name });
 
             var response = client.ExecuteTaskAsync(request);
         }
