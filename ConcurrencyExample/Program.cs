@@ -62,13 +62,13 @@ namespace ConcurrencyExample2
                 return (Response) "OK";
             };
 
-            Post["/akka",true] = async (x,ct) =>
-            {
-                var person = this.Bind<Person>();
-                var envelope = new ConsistentHashableEnvelope(person, person.Name);
-                var result = await AkkaUtils.PostPerson.Ask<string>(envelope);
-                return (Response) result;
-            };
+            //Post["/",true] = async (x,ct) =>
+            //{
+            //    var person = this.Bind<Person>();
+            //    var envelope = new ConsistentHashableEnvelope(person, person.Name);
+            //    var result = await AkkaUtils.PostPerson.Ask<string>(envelope);
+            //    return (Response) result;
+            //};
         }
     }
 

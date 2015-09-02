@@ -24,7 +24,7 @@ namespace ClientApplication
             var client = new RestClient("http://localhost:1234");
             var request = new RestRequest(Method.POST)
             {
-                Resource = "/akka",
+                Resource = "/",
                 RequestFormat = DataFormat.Json
             };
             
