@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 using RestSharp;
 
@@ -24,8 +23,8 @@ namespace ClientApplication
                 Resource = "/",
                 RequestFormat = DataFormat.Json
             };
-
-            request.AddBody(new { Name = "Olle"});
+            
+            request.AddBody(new { Name = "Connor MacLeod" });
 
             var response = client.Execute(request);
             Console.WriteLine(response.Content);
