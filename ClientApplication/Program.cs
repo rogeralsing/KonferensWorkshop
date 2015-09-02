@@ -11,7 +11,7 @@ namespace ClientApplication
             //simulera att 10 samtidiga användare/klienter försöker skicka samma data samtidigt
             for (int i = 0; i < 10; i++)
             {
-                Task.Factory.StartNew(PostPerson);
+                PostPerson();
             }
             Console.ReadLine();
         }
@@ -27,8 +27,7 @@ namespace ClientApplication
             
             request.AddBody(new { Name = "Connor MacLeod" });
 
-            var response = client.Execute(request);
-            Console.WriteLine(response.Content);
+            var response = client.ExecuteTaskAsync(request);
         }
     }
 }
