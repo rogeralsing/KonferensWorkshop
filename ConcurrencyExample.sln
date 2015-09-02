@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientApplication", "ClientApplication\ClientApplication.csproj", "{37911810-B1DB-4CB7-93A7-EF4EC1F2AE65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcurrencyExample", "ConcurrencyExample\ConcurrencyExample.csproj", "{4D16366F-60C0-4523-AE2B-5474971BF2A3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{37911810-B1DB-4CB7-93A7-EF4EC1F2AE65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37911810-B1DB-4CB7-93A7-EF4EC1F2AE65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37911810-B1DB-4CB7-93A7-EF4EC1F2AE65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37911810-B1DB-4CB7-93A7-EF4EC1F2AE65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D16366F-60C0-4523-AE2B-5474971BF2A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D16366F-60C0-4523-AE2B-5474971BF2A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D16366F-60C0-4523-AE2B-5474971BF2A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D16366F-60C0-4523-AE2B-5474971BF2A3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
