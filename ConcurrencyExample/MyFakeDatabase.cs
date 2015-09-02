@@ -17,7 +17,7 @@ namespace ConcurrencyExample2
             get
             {
                 //simulera latency i databasanrop
-                Thread.Sleep(1500);
+                Thread.Sleep(500);
                 return PersonTable.Values.ToArray();    
             }            
         }

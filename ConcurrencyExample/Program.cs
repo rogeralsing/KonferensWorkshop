@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Akka.Actor;
+using Akka.Routing;
 using Nancy;
 using Nancy.Hosting.Self;
 using Nancy.ModelBinding;
@@ -64,7 +65,8 @@ namespace ConcurrencyExample2
             Post["/akka",true] = async (x,ct) =>
             {
                 var person = this.Bind<Person>();
-                var result = await AkkaUtils.PostPerson.Ask<string>(person);
+                var envelope = new ConsistentHashableEnvelope(person, person.Name);
+                var result = await AkkaUtils.PostPerson.Ask<string>(envelope);
                 return (Response) result;
             };
         }
