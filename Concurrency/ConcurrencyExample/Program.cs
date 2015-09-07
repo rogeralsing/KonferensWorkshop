@@ -57,30 +57,30 @@ namespace ConcurrencyExample2
                 return Response.AsJson(persons);
             };
 
-            Post["/"] = x =>
-            {
-                var person = this.Bind<Person>();
-                var repo = new PersonRepository();
-                if (!repo.Exists(person.Name))
-                {
-                    Console.WriteLine("Person with name {0} was added", person.Name);
-                    repo.Add(person);
-                }
-                else
-                {
-                    Console.WriteLine("Person with name {0} already exists", person.Name);
-                }
-
-                return (Response) "OK";
-            };
-
-            //Post["/",true] = async (x,ct) =>
+            //Post["/"] = x =>
             //{
             //    var person = this.Bind<Person>();
-            //    var envelope = new ConsistentHashableEnvelope(person, person.Name);
-            //    var result = await AkkaUtils.PostPerson.Ask<string>(envelope);
-            //    return (Response) result;
+            //    var repo = new PersonRepository();
+            //    if (!repo.Exists(person.Name))
+            //    {
+            //        Console.WriteLine("Person with name {0} was added", person.Name);
+            //        repo.Add(person);
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Person with name {0} already exists", person.Name);
+            //    }
+
+            //    return (Response)"OK";
             //};
+
+            Post["/", true] = async (x, ct) =>
+            {
+                var person = this.Bind<Person>();
+                var envelope = new ConsistentHashableEnvelope(person, person.Name);
+                var result = await AkkaUtils.PostPerson.Ask<string>(envelope);
+                return (Response)result;
+            };
         }
     }
 }
