@@ -35,7 +35,6 @@ namespace CircuitBreaker
             while (true)
             {
                 var res = await db.Ask(new DbRequest("select * from foo"));
-                Console.WriteLine(res);
                 await Task.Delay(TimeSpan.FromMilliseconds(500));
             }
         }
@@ -48,9 +47,9 @@ namespace CircuitBreaker
         public static string RunSql(string sql)
         {
             if (!IsOpen)
-                throw new Exception("DB is in flames, nothing works!!!11");
+                throw new Exception("DB is in flames, nothing works!");
 
-            return "flksdjfkjsdk";
+            return "some result";
         }
 
         public static void Up()
