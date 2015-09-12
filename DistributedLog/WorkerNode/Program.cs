@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Akka.Actor;
 
 namespace WorkerNode
@@ -13,7 +9,16 @@ namespace WorkerNode
         {
             using (var system = ActorSystem.Create("MyCluster"))
             {
-                Console.ReadLine();
+                var worker = system.ActorOf<WorkerActor>();
+
+                while(true)
+                {
+                    Console.WriteLine("Press enter to send work to worker actor..");
+                    Console.ReadLine();
+
+                    worker.Tell(new DoWork());
+                }
+                
             }
         }
     }
