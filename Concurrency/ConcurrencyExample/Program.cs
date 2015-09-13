@@ -76,10 +76,6 @@ namespace ConcurrencyExample2
 
             //Post["/", true] = async (x, ct) =>
             //{
-            //    var person = this.Bind<Person>();
-            //    var envelope = new ConsistentHashableEnvelope(person, person.Name);
-            //    var result = await AkkaUtils.PostPerson.Ask<string>(envelope);
-            //    return (Response)result;
             //};
         }
     }

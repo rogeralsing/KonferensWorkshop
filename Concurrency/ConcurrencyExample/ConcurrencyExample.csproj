@@ -57,9 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AkkaUtils.cs" />
     <Compile Include="MyFakeDatabase.cs" />
-    <Compile Include="PostPersonActor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
