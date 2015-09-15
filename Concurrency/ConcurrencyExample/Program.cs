@@ -46,6 +46,18 @@ namespace ConcurrencyExample2
         }
     }
 
+    public static class AkkaUtil
+    {
+        public static IActorRef PersonPostActor;
+        private static ActorSystem system;
+
+        static AkkaUtil()
+        {
+            system = ActorSystem.Create("MySystem");
+            PersonPostActor = system.ActorOf(Props.Create<PersonPostActor>().WithRouter(new ConsistentHashingPool(10)));
+        }
+    }
+
     public class MainModule : NancyModule
     {
         public MainModule()
@@ -57,26 +69,31 @@ namespace ConcurrencyExample2
                 return Response.AsJson(persons);
             };
 
-            Post["/"] = x =>
+            //Post["/"] = x =>
+            //{
+            //    var person = this.Bind<Person>();
+            //    var repo = new PersonRepository();
+            //    if (!repo.Exists(person.Name))
+            //    {
+            //        Console.WriteLine("Person with name {0} was added", person.Name);
+            //        repo.Add(person);
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Person with name {0} already exists", person.Name);
+            //    }
+
+            //    return (Response)"OK";
+            //};
+
+            Post["/", true] = async (x, ct) =>
             {
                 var person = this.Bind<Person>();
-                var repo = new PersonRepository();
-                if (!repo.Exists(person.Name))
-                {
-                    Console.WriteLine("Person with name {0} was added", person.Name);
-                    repo.Add(person);
-                }
-                else
-                {
-                    Console.WriteLine("Person with name {0} already exists", person.Name);
-                }
+                var envelope = new ConsistentHashableEnvelope(person,person.Name);
+                var result = await AkkaUtil.PersonPostActor.Ask<string>(envelope);
+                return (Response) result;
 
-                return (Response)"OK";
             };
-
-            //Post["/", true] = async (x, ct) =>
-            //{
-            //};
         }
     }
 }

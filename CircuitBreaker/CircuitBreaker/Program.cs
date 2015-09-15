@@ -35,7 +35,7 @@ namespace CircuitBreaker
             while (true)
             {
                 var res = await db.Ask(new DbRequest("select * from foo"));
-                await Task.Delay(TimeSpan.FromMilliseconds(500));
+                await Task.Delay(TimeSpan.FromMilliseconds(50));
             }
         }
     }
